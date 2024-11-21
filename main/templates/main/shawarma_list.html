@@ -1,0 +1,62 @@
+{% extends 'main/base.html' %}
+{% block title %}Мои работы{% endblock %}
+{% block content %}
+    <h1>Шавермы</h1>
+    <ul>
+        {% for shawarma in shawarmas %}
+            <li>
+                <h4>Название: {{shawarma.shawarma_name}}</h4>
+                <p>Ингредиенты: {{ shawarma.shawarma_ingredients }}</p>
+                <p>Цена: {{ shawarma.shawarma_price }} руб.</p>
+            </li>
+        {% empty %}
+            <li>
+                <h3>На данный момент меню - пустое</h3>
+            </li>
+        {% endfor %}
+    </ul>
+    <h1>Напитки</h1>
+    <ul>
+        {% for drink in drinks %}
+            <li>
+                <h4>Название: {{drink.drink_name}}</h4>
+                <p>Ингредиенты: {{ drink.drink_description }}</p>
+                <p>Цена: {{ drink.drink_price }} руб.</p>
+            </li>
+        {% empty %}
+            <li>
+                <h3>На данный момент меню - пустое</h3>
+            </li>
+        {% endfor %}
+    </ul>
+    <h1>Снеки</h1>
+    <ul>
+        {% for snack in snacks %}
+            <li>
+                <h4>Название: {{snack.snack_name}}</h4>
+                <p>Ингредиенты: {{ snack.snack_description }}</p>
+                <p>Цена: {{ snack.snack_price }} руб.</p>
+            </li>
+        {% empty %}
+            <li>
+                <h3>На данный момент меню - пустое</h3>
+            </li>
+        {% endfor %}
+    </ul>
+    <h1>Комбо</h1>
+    <ul>
+        {% for combo in combos %}
+            <li>
+                <h4>Название: {{combo.combo_name}}</h4>
+                <p>Основное блюдо: {{ combo.combo_main }}</p>
+                <p>Снек: {{ combo.combo_snacks }}</p>
+                <p>Напиток: {{ combo.combo_drink }}</p>
+                <p>Цена: {{ combo.combo_price }} руб.</p>
+            </li>
+        {% empty %}
+            <li>
+                <h3>На данный момент меню - пустое</h3>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

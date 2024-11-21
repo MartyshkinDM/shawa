@@ -1,0 +1,14 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Авторизация{% endblock %}
+
+{% block content %}
+ <form class="form" action="{% url 'users:login' %}" method="post">
+     {% csrf_token %}
+     {{form.as_p}}
+     <button type="submit">Войти</button>
+     <input type="hidden" name="next" value="{% url 'main:index' %}" />
+ </form>
+ <p>Еще нет аккаунта?</p>
+ <a href="{% url 'users:register' %}">Регистрация</a>
+{% endblock %}

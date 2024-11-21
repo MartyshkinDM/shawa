@@ -1,0 +1,114 @@
+{% extends 'main/base.html' %}
+{% block title %}Главная{% endblock %}
+{% block content %}
+    <div class="box_type2">
+        <h1 style="margin-bottom: 0px">LAVASHEVSKY SHAWA</h1>
+        <p style="width: 600px;height: 300px">Добро пожаловать в LAVASHEVSKY SHAWA – место, где шаурма становится искусством! Мы предлагаем вам попробовать лучшую шаурму в Нижнем Новгороде: только свежие ингредиенты, фирменные соусы и идеальное сочетание вкусов. У нас каждый кусочек – это удовольствие, созданное с вниманием к деталям и уважением к традициям. Заходите и оцените сами, почему нас выбирают снова и снова!</p>
+    </div>
+    <div class ="box_type1", id="shawarmas">
+        <h2>Шавермы</h2>
+        <div class="windows">
+            {% for shawarma in Shawarmas %}
+                <div class="window">
+                    <h4>{{shawarma.shawarma_name}}</h4>
+                    <picture> <img src="{{ shawarma.shawarma_photo.url }}"> </picture>
+                    <div class="ingredients">
+                        <h3>Состав:</h3>
+                        {% for ingredient in shawarma.shawarma_ingredients.all %}
+                            <li>{{ ingredient.ingredient.ingredient_name }} — {{ ingredient.weight|floatformat:"0" }} г</li>
+                        {% empty %}
+                            <li>Ингредиенты отсутствуют</li>
+                        {% endfor %}
+                        <p class="CPFC">КБЖУ: {{ shawarma.shawarma_calories }}ккал., {{ shawarma.shawarma_proteins }}г.,{{ shawarma.shawarma_fats }}г.,{{ shawarma.shawarma_carbohydrates }}г.</p>
+                    </div>
+                    <p class="price">{{ shawarma.shawarma_price|floatformat:"0"  }} ₽</p>
+                </div>
+            {% empty %}
+        </div>
+            <div>
+                <h3>На данный момент меню - пустое</h3>
+            </div>
+        {% endfor %}
+    </div>
+    <div class ="box_type1",id="snacks">
+        <h2>Снеки</h2>
+        <div class="windows">
+            {% for snack in snacks %}
+                <div class="window">
+                    <h4>{{snack.snack_name}}</h4>
+                    <picture> <img src="{{ snack.snack_photo.url }}"> </picture>
+                    <div class="ingredients">
+                        <h3>Описание:</h3>
+                        <p class="CPFC">{{ snack.snack_description }}</p>
+                        <p class="CPFC" style="margin-bottom: 0px">КБЖУ: {{ snack.snack_calories }}ккал., {{ snack.snack_proteins }}г.,{{ snack.snack_fats }}г.,{{ snack.snack_carbohydrates }}г.</p>
+                        <p style="font-size: 10px; margin-top: 0px">Цены и КБЖУ товара приведены для 100г продукта</p>
+                    </div>
+                    <p class="price">{{ snack.snack_price|floatformat:"0" }} ₽</p>
+                </div>
+            {% empty %}
+                <div>
+                    <h3>На данный момент меню - пустое</h3>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class ="box_type1",id="drinks">
+        <h2>Напитки</h2>
+        <div class="windows">
+            {% for drink in drinks %}
+                <div class="window">
+                    <h4>{{drink.drink_name}}</h4>
+                    <picture> <img src="{{ drink.drink_photo.url }}"> </picture>
+                    <div class="ingredients">
+                        <h3>Описание:</h3>
+                        <p class="CPFC">{{ drink.drink_description }}</p>
+                        <p class="CPFC" style="margin-bottom: 0px">КБЖУ: {{ drink.drink_calories }}ккал., {{ drink.drink_proteins }}г.,{{ drink.drink_fats }}г.,{{ drink.drink_carbohydrates }}г.</p>
+                        <p style="font-size: 10px; margin-top: 0px">КБЖУ товара приведены для 250мл продукта</p>
+                    </div>
+                    <p class="price">{{ drink.drink_price|floatformat:"0" }} ₽</p>
+                </div>
+            {% empty %}
+                <div>
+                    <h3>На данный момент меню - пустое</h3>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class ="box_type1",id="combos">
+        <h2>Комбо</h2>
+        <div class="windows">
+            {% for combo in combos %}
+                <div class="window">
+                    <h4>{{combo.combo_name}}</h4>
+                    <picture> <img src="{{ combo.combo_photo.url }}"> </picture>
+                    <div class="ingredients">
+                        <h3>Состав:</h3>
+                        <li>Шаурма {{ combo.combo_main }}</li>
+                        <li>{{ combo.combo_snacks }}</li>
+                        <li>{{ combo.combo_drink }}</li>
+                    </div>
+                    <p class="price">{{ combo.combo_price|floatformat:"0"  }} ₽</p>
+                </div>
+            {% empty %}
+                <div>
+                    <h3>На данный момент меню - пустое</h3>
+                </div>
+            {% endfor %}
+        </div>
+    <div class="box_type4">
+        <h2 style="font-size: 70px;margin-bottom: 20px">Доставка и оплата в Нижнем Новгороде</h2>
+        <div class="box_type3">
+            <h3>60 минут или шаурма беспалтно</h3>
+            <p>Если не успеем доставить за 60 минут, вы получите извинительную шаурму. Её можно будет добавить в один из следующих заказов. Все цены в меню указаны без учета скидок.</p>
+            <h3>от 649 ₽</h3>
+            <p>Минимальная сумма доставки</p>
+            <h3>7 000 ₽</h3>
+            <p>Максимальная сумма при оплате наличными</p>
+            <p>Изображения продуктов могут отличаться от продуктов в заказе.</p>
+        </div>
+    </div>
+    <div class ="box_type1",id="combos">
+        <p>Info about us</p>
+    </div>
+    </div>
+{% endblock %}
